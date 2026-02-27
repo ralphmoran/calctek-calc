@@ -93,7 +93,7 @@ php artisan test
 
 ## Stretch Goal: Complex Expressions
 
-The calculator supports advanced functions like `sqrt()`, `^` (exponentiation), `!` (factorial), and all 30+ functions provided by `mossadal/math-parser` (trig, log, abs, etc.). Only the validation regex and frontend keypad needed updating — the parser already supported everything out of the box.
+The calculator supports advanced functions like `sqrt()`, `^` (exponentiation), `!` (factorial), and all 30+ functions provided by `mossadal/math-parser` (trig, log, abs, etc.).
 
 **A note on the example expression:** It took me quite some time to figure this out, but the expression shared in the interview file — `sqrt((((9*9)/12)+(13-4))*2)^2)` — has an extra `)` at the end, making it syntactically invalid. The correct, balanced expression is `sqrt((((9*9)/12)+(13-4))*2)^2`, which evaluates to **31.5**.
 
@@ -103,6 +103,4 @@ The calculator supports advanced functions like `sqrt()`, `^` (exponentiation), 
 - **Rate limiting**: The API currently has no rate limiting. Laravel's built-in `ThrottleRequests` middleware should be applied to prevent abuse.
 - **Pagination**: The ticker loads the last 50 calculations. At scale, cursor-based pagination would replace the fixed limit.
 - **Multi-tenancy**: The composite index would shift to `(user_id, created_at, id)` once user scoping is added.
-- **Summary tables**: If dashboards with aggregations (count, average, frequency) are needed, a precomputed summary table would avoid expensive queries against the main table.
-- **Queue**: Heavy or chained calculations could be offloaded to a queue with Redis, returning a job ID for polling.
 - **Frontend testing**: Vue component tests with Vitest would round out the test coverage.
